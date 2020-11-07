@@ -1,0 +1,15 @@
+type = internal/date
+interval = 5.0
+date = %a %b %d
+time = %R
+date-alt = %Y/%m/%d
+time-alt = %T
+; Avaiable tags:
+; <label>
+format = : <label>
+; format-foreground = #FFFFFFFF
+; format-background = #00FF00
+label = %date% %time%
+; label-foreground = #FF0000
+; label-background = #000000
+

@@ -1,0 +1,16 @@
+type = custom/text
+content = Some random label
+
+; "content" has the same properties as "format-NAME"
+content-background = #000
+content-foreground = #fff
+content-padding = 4
+
+; "click-(left|middle|right)" will be executed using "/bin/sh -c $COMMAND"
+click-left = echo left
+click-middle = echo middle
+click-right = echo right
+
+; "scroll-(up|down)" will be executed using "/bin/sh -c $COMMAND"
+scroll-up = echo scroll up
+scroll-down = echo scroll down

@@ -1,0 +1,23 @@
+color info blue default
+color listfocus green default bold
+color listfocus_unread green default bold
+
+highlight article "\[[0-9]+\]" cyan default
+highlight article "'[a-zA-Z0-9\\-_]+'" magenta default
+highlight article "https?://.*(\\s|/|$)" green default
+browser "firefox %u"
+
+auto-reload yes
+reload-time 30
+notify-program notify-send
+
+unbind-key J
+unbind-key K
+unbind-key l
+unbind-key h
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+bind-key L toggle-show-read-feeds
+

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/tmp/Downloads/test'
+let g:netrw_dirhist_1='/tmp'
+let g:netrw_dirhist_0='/'
+let g:netrw_dirhist_9='/tmp/Downloads/awm'
+let g:netrw_dirhist_8='/home/liu/.config/oh-my-zsh/plugins/pure'
+let g:netrw_dirhist_7='/home/liu/Downloads'
+let g:netrw_dirhist_6='/tmp/Downloads/web/hello'
+let g:netrw_dirhist_5='/home/liu'
+let g:netrw_dirhist_4='/tmp/Downloads'
+let g:netrw_dirhist_3='/tmp/Downloads/var/db/sudo/lectured'

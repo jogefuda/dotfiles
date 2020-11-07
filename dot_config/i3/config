@@ -1,0 +1,207 @@
+# i3 config file (v4)
+set $: exec
+set $:: exec --no-startup-id
+set $::: exec_always --no-startup-id
+set $script ~/.config/i3/script
+set $mod Mod4
+set $alt Mod1
+floating_modifier $mod
+
+# WM setting
+# (0x0 default, -1x-1 unconfined, wxh)
+#floating_minimum_size -1x-1
+# (left, center, right)
+title_align left
+# (smart, ignore, leave_fullscreen)
+popup_during_fullscreen smart
+# (yes, no)
+#force_xinerama yes
+workspace_auto_back_and_forth yes
+show_marks yes
+focus_follows_mouse yes
+# (smart, urgent, focus, none)
+focus_on_window_activation smart
+# (yes, no, force, workspace)
+focus_wrapping yes
+# (output, none)
+mouse_warping none
+# (default, tabbed, stacking)
+workspace_layout default
+# (normal, none, pixel)
+default_border pixel 2
+default_floating_border pixel 2
+# (auto, vertical, horizontal)
+default_orientation auto
+force_display_urgency_hint 500 ms
+#ipc-socket <path>
+
+# Gap setting
+# (on, no_gaps)
+smart_borders on
+# (smart_no_gaps)
+hide_edge_borders smart_no_gaps
+# (on, inverse_outer)
+#smart_gaps inverse_outer
+# [workspace $ws] gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle <px>
+
+
+# Style
+font pango:monospace 10
+# set_from_resource $<name> <resource_name> <fallback>
+# class                 border  backgr. text    indicator child_border
+client.focused          #ab93e2 #210244 #ffffff #88fcd1   #d188fc
+client.focused_inactive #333333 #5f676a #ffffff #222222   #222222
+client.unfocused        #333333 #222222 #bbbbbb #222222   #222222
+client.urgent           #ff9c11 #e56b6b #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #000000
+
+# for_window <criteria> <command>
+for_window [window_role=qalc] floating enable, resize set width 40 ppt height 25 ppt, move scratchpad;
+# no_focus <criteria>
+# assign <ceriteria> <workspace>
+# assign <ceriteria> output left|right|up|down|primary|<output>
+
+
+# Use pactl to adjust volume in PulseAudio.
+#set $refresh_i3status killall -SIGUSR3 i3status
+bindsym XF86AudioRaiseVolume $:: pactl set-sink-volume @DEFAULT_SINK@ +3%
+bindsym XF86AudioLowerVolume $:: pactl set-sink-volume @DEFAULT_SINK@ -3%
+bindsym XF86AudioMute $:: pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute $:: pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Use xbacklight to adjust backlight and screen lock/off
+bindsym XF86MonBrightnessUp $:: xbacklight +5%
+bindsym XF86MonBrightnessDown $:: xbacklight -5%
+bindsym --release XF86ScreenSaver $:: $script/lock.sh
+
+# TouchPad
+#bindsym XF86XK_TouchpadToggle
+
+# scratchpad
+bindsym $mod+q [window_role=qalc] scratchpad show
+# start a application
+set $term terminator 
+bindsym $mod+Return $:: $term
+bindsym $mod+d $:: dmenu_run
+bindsym Print $:: $script/screenshot.sh full
+bindsym $alt+Print $:: $script/screenshot.sh window
+bindsym $mod+Shift+s $:: $script/screenshot.sh select
+bindsym $mod+Ctrl+h $:: $term -x htop
+bindsym $mod+Ctrl+w $:: chromium
+bindsym $mod+Ctrl+l $:: $script/lock.sh
+
+# Start up
+#$:: xss-lock --transfer-sleep-lock -- i3lock --nofork
+$::: $script/launch_bar.sh
+$::: $term -r qalc -x qalc
+$::: dunst
+$::: xset r rate 300 32
+$::: xset s 480 0
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# mark
+bindsym $mod+$alt+c mark --toggle limit_cpu_
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# change border style (none, normal, pixel)
+bindsym $mod+backslash border toggle
+
+# change sticky
+bindsym $mod+t sticky toggle
+
+# change container layout (stacked, tabbed, toggle split, float, fullscreen)
+#bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+f fullscreen toggle
+
+# split in horizontal/vertical orientation
+bindsym $mod+c split h
+bindsym $mod+v split v
+
+# focus the (parent, child, float/tile) container
+bindsym $mod+a focus parent
+bindsym $mod+b focus child
+bindsym $mod+space focus mode_toggle
+
+# i3 (reload, restart, exit)
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e $: "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Define names for default workspaces for which we configure key bindings later on.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# multi monitors
+# workspace <workspace> output <output1> [output2] ..
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym h resize shrink width 5 px or 3 ppt
+        bindsym j resize grow height 5 px or 3 ppt
+        bindsym k resize shrink height 5 px or 3 ppt
+        bindsym l resize grow width 5 px or 3 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+g mode "gap"
+mode "gap" {
+        bindsym r gaps outer all set 0; gaps inner all set 0
+        bindsym i gaps inner all plus 2
+        bindsym Shift+i gaps inner all minus 2
+        bindsym o gaps outer all plus 2
+        bindsym Shift+o gaps outer all minus 2
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}

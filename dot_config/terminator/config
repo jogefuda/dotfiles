@@ -1,0 +1,63 @@
+[global_config]
+  focus = mouse
+  title_inactive_bg_color = "#babdb6"
+  suppress_multiple_term_dialog = True
+  title_font = Source Han Sans CN 9
+[keybindings]
+  new_tab = None
+  cycle_next = None
+  cycle_prev = None
+  go_next = None
+  go_prev = None
+  go_up = None
+  go_down = None
+  go_left = None
+  go_right = None
+  rotate_cw = None
+  rotate_ccw = None
+  split_horiz = None
+  split_vert = None
+  close_term = None
+  search = None
+  close_window = None
+  resize_up = None
+  resize_down = None
+  resize_left = None
+  resize_right = None
+  move_tab_right = None
+  move_tab_left = None
+  toggle_zoom = None
+  scaled_zoom = None
+  next_tab = None
+  prev_tab = None
+  full_screen = None
+  hide_window = None
+  new_window = None
+  new_terminator = None
+  edit_window_title = None
+  edit_tab_title = None
+  edit_terminal_title = None
+  layout_launcher = None
+  help = None
+[profiles]
+  [[default]]
+    urgent_bell = True
+    background_color = "#0a031d"
+    cursor_shape = underline
+    cursor_color = "#aaaaaa"
+    font = Source Code Variable 11
+    foreground_color = "#ebdbb2"
+    scrollbar_position = hidden
+    scrollback_lines = 2000
+    palette = "#000000:#ef2929:#6cc140:#fcaf3e:#67a2e9:#ba36ba:#00aaaa:#d3d7cf:#555555:#ff5555:#55ff55:#ffff55:#6363ba:#ff55ff:#55ffff:#ffffff"
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
