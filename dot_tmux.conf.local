@@ -294,3 +294,4 @@ unbind C-a
 #set -g status-position top
 # custom
 set -g default-command "${SHELL}"
+set -g set-clipcopy on
