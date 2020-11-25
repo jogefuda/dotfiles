@@ -58,6 +58,14 @@ function get(clientkeys, clientbuttons)
         -- Set Firefox to always map on the tag named "2" on screen 1.
         -- { rule = { class = "Firefox" },
         --   properties = { screen = 1, tag = "2" } },
+
+        -- auto position mpv
+        { rule = { class = "mpv" },
+          properties = { focus = false },
+          callback = function(c)
+              awful.client.swap.byidx(1, c)
+          end
+        },
     }
 
     return rule
