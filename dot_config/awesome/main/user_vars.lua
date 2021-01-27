@@ -8,7 +8,7 @@
     modkey = "Mod4",
 
     -- Standard application
-    terminal = "terminator",
+    terminal = "alacritty",
 
 }
 
